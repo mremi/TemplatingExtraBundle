@@ -1,0 +1,22 @@
+{
+    "name": "mremi/templating-extra-bundle",
+    "type": "symfony-bundle",
+    "description": "Templating Extra Bundle for Symfony2",
+    "keywords": ["templating", "profiler"],
+    "homepage": "https://github.com/mremi/TemplatingExtraBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rémi Marseille",
+            "email": "marseille.remi@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.1"
+    },
+    "autoload": {
+        "psr-0": { "Mremi\\TemplatingExtraBundle": "" }
+    },
+    "target-dir": "Mremi/TemplatingExtraBundle"
+}

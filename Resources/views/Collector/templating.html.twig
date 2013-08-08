@@ -1,0 +1,63 @@
+{% extends 'WebProfilerBundle:Profiler:layout.html.twig' %}
+
+{% block toolbar %}
+    <div class="sf-toolbar-block">
+        <div class="sf-toolbar-icon">
+            <a href="{{ path('_profiler', { 'token': token, 'panel': name }) }}">
+                {# fake image span #}<span style="width:0px; height: 28px; vertical-align: middle;"></span>
+                {% set templatesCounter = collector.data|length %}
+                <span class="sf-toolbar-status">{{ templatesCounter }}</span> template{{ templatesCounter > 1 ? 's' : '' }}
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block menu %}
+    <span class="label">
+        {# todo: add icon #}
+        {#<span class="icon"><img src="" alt="" /></span>#}
+        {% set templatesCounter = collector.data|length %}
+        <strong>Template{{ templatesCounter > 1 ? 's' : '' }}</strong>
+        <span class="count">
+            <span>{{ templatesCounter }}</span>
+        </span>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    {% for template in collector.data %}
+        <h2>Template "{{ template.name }}"</h2>
+
+        <table>
+            <caption>Statistics</caption>
+            <tr>
+                <th>Memory (diff)</th>
+                <td>{{ ((template.memory_end - template.memory_start) / 1000) | number_format(0) }} Kb</td>
+            </tr>
+            <tr>
+                <th>Memory (peak)</th>
+                <td>{{ (template.memory_peak / 1000) | number_format(0) }} Kb</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ template.duration | number_format(2) }} ms</td>
+            </tr>
+        </table>
+
+        <table>
+            <caption>Parameters</caption>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            {% for name, parameter in template.parameters %}
+                <tr>
+                    <th>{{ loop.index }}</th>
+                    <td>{{ name }}</td>
+                    <td>{{ parameter }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,70 @@
+MremiTemplatingExtraBundle
+==========================
+
+This bundle profiles all the rendered templates (Twig or PHP) during a Symfony2
+page rendering.
+
+## Prerequisites
+
+This version of the bundle requires Symfony 2.1+.
+
+**Basic Docs**
+
+* [Installation](#installation)
+* [Profiler](#profiler)
+
+<a name="installation"></a>
+
+## Installation
+
+Installation is a quick 2 step process:
+
+1. Download MremiTemplatingExtraBundle using composer
+2. Enable the Bundle
+
+### Step 1: Download MremiTemplatingExtraBundle using composer
+
+Add MremiTemplatingExtraBundle in your composer.json:
+
+```js
+{
+    "require": {
+        "mremi/templating-extra-bundle": "dev-master"
+    }
+}
+```
+
+Now tell composer to download the bundle by running the command:
+
+``` bash
+$ php composer.phar update mremi/templating-extra-bundle
+```
+
+Composer will install the bundle to your project's `vendor/mremi` directory.
+
+### Step 2: Enable the bundle
+
+Enable the bundle in the kernel:
+
+``` php
+<?php
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    $bundles = array(
+        // ...
+        new Mremi\TemplatingExtraBundle\MremiTemplatingExtraBundle(),
+    );
+}
+```
+
+<a name="profiler"></a>
+
+## Profiler
+
+If your are in debug mode (see your front controller), you can check in the web
+debug toolbar the rendered templates and some statistics from the current
+HTTP request: number of templates, consumed memory, request duration...
+
+![Screenshot](https://raw.github.com/mremi/TemplatingExtraBundle/master/Resources/doc/images/profiler.png)
