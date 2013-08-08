@@ -71,4 +71,6 @@ If your are in debug mode (see your front controller), you can check in the web
 debug toolbar the rendered templates and some statistics from the current
 HTTP request: number of templates, consumed memory, request duration...
 
+Moreover, you can see all parameters passed to each template.
+
 ![Screenshot](https://raw.github.com/mremi/TemplatingExtraBundle/master/Resources/doc/images/profiler.png)
