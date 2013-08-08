@@ -1,6 +1,10 @@
 MremiTemplatingExtraBundle
 ==========================
 
+[![Build Status](https://api.travis-ci.org/mremi/TemplatingExtraBundle.png?branch=master)](https://travis-ci.org/mremi/TemplatingExtraBundle)
+[![Total Downloads](https://poser.pugx.org/mremi/templating-extra-bundle/downloads.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
+[![Latest Stable Version](https://poser.pugx.org/mremi/templating-extra-bundle/v/stable.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
+
 This bundle profiles all the rendered templates (Twig or PHP) during a Symfony2
 page rendering.
 
