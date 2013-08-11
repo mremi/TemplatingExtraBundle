@@ -1,6 +1,8 @@
 MremiTemplatingExtraBundle
 ==========================
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6f168569-7975-4b8a-bc15-c79446ba0fef/big.png)](https://insight.sensiolabs.com/projects/6f168569-7975-4b8a-bc15-c79446ba0fef)
+
 [![Build Status](https://api.travis-ci.org/mremi/TemplatingExtraBundle.png?branch=master)](https://travis-ci.org/mremi/TemplatingExtraBundle)
 [![Total Downloads](https://poser.pugx.org/mremi/templating-extra-bundle/downloads.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
 [![Latest Stable Version](https://poser.pugx.org/mremi/templating-extra-bundle/v/stable.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
