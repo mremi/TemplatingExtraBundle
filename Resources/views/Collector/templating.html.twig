@@ -26,7 +26,9 @@
 
 {% block panel %}
     {% for template in collector.data %}
-        <h2>Template "{{ template.name }}"</h2>
+        {% set link = template.file|file_link(1) %}
+
+        <h2>Template "{% if link %}<a href="{{ link }}">{{ template.name }}</a>{% else %}{{ template.name }}{% endif %}"</h2>
 
         <table>
             <caption>Statistics</caption>

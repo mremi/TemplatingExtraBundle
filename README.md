@@ -78,3 +78,6 @@ HTTP request: number of templates, consumed memory, request duration...
 Moreover, you can see all parameters passed to each template.
 
 ![Screenshot](https://raw.github.com/mremi/TemplatingExtraBundle/master/Resources/doc/images/profiler.png)
+
+If you configured the [framework bundle](http://symfony.com/doc/current/reference/configuration/framework.html#ide)
+(or `xdebug.file_link_format`), you can edit templates just by clicking on name.

@@ -11,6 +11,8 @@
 
         <service id="mremi_templating_extra.templating_proxy" class="Mremi\TemplatingExtraBundle\Templating\TemplatingProxy">
             <argument />
+            <argument type="service" id="templating.name_parser" />
+            <argument type="service" id="templating.locator" />
             <argument type="service" id="debug.stopwatch" />
             <argument type="service" id="mremi_templating_extra.templating.data_collector" />
         </service>
