@@ -8,7 +8,9 @@ MremiTemplatingExtraBundle
 [![Latest Stable Version](https://poser.pugx.org/mremi/templating-extra-bundle/v/stable.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
 
 This bundle profiles all the rendered templates (Twig or PHP) during a Symfony2
-page rendering.
+page rendering. This only includes templates which are rendered by `render` and
+`renderResponse` through the templating service (for instance, `include` and
+`embed` Twig tags are not tracked).
 
 ## Prerequisites
 
