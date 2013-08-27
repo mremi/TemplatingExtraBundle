@@ -2,7 +2,7 @@
     "name": "mremi/templating-extra-bundle",
     "type": "symfony-bundle",
     "description": "Profiles all the rendered templates (Twig or PHP) during a Symfony2 page rendering",
-    "keywords": ["templating", "profiler"],
+    "keywords": ["Symfony2", "templating", "profiler"],
     "homepage": "https://github.com/mremi/TemplatingExtraBundle",
     "license": "MIT",
     "authors": [
