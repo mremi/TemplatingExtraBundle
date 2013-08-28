@@ -5,9 +5,22 @@
         <div class="sf-toolbar-icon">
             <a href="{{ path('_profiler', { 'token': token, 'panel': name }) }}">
                 {# fake image span #}<span style="width:0px; height: 28px; vertical-align: middle;"></span>
-                {% set templatesCounter = collector.data|length %}
+                {% set templatesCounter = collector.templates|length %}
                 <span class="sf-toolbar-status">{{ templatesCounter }}</span> template{{ templatesCounter > 1 ? 's' : '' }}
             </a>
+        </div>
+        <div class="sf-toolbar-info">
+            {% for template in collector.templates %}
+                <div class="sf-toolbar-info-piece">
+                    <strong>{{ template.name }}</strong>
+                    <span>{{ template.duration | number_format(2) }} ms</span>
+                </div>
+            {% endfor %}
+
+            <div class="sf-toolbar-info-piece">
+                <strong>Total</strong>
+                <span>{{ collector.totalDuration | number_format(2) }} ms</span>
+            </div>
         </div>
     </div>
 {% endblock %}
@@ -16,7 +29,7 @@
     <span class="label">
         {# todo: add icon #}
         {#<span class="icon"><img src="" alt="" /></span>#}
-        {% set templatesCounter = collector.data|length %}
+        {% set templatesCounter = collector.templates|length %}
         <strong>Template{{ templatesCounter > 1 ? 's' : '' }}</strong>
         <span class="count">
             <span>{{ templatesCounter }}</span>
@@ -25,39 +38,66 @@
 {% endblock %}
 
 {% block panel %}
-    {% for template in collector.data %}
+    {% set templatesCounter = collector.templates|length %}
+
+    <h2>{{ '%d template%s rendered in %s ms' | format(templatesCounter, templatesCounter > 1 ? 's' : '', collector.totalDuration | number_format(2)) }}</h2>
+
+    {% for template in collector.templates %}
         {% set link = template.file|file_link(1) %}
 
-        <h2>Template "{% if link %}<a href="{{ link }}">{{ template.name }}</a>{% else %}{{ template.name }}{% endif %}"</h2>
+        <hr style="margin-bottom: 25px">
+
+        <h3>Template "{% if link %}<a href="{{ link }}">{{ template.name }}</a>{% else %}{{ template.name }}{% endif %}"</h3>
 
         <table>
             <caption>Statistics</caption>
             <tr>
-                <th>Memory (diff)</th>
+                <th style="width: 20%">Memory (diff)</th>
                 <td>{{ ((template.memory_end - template.memory_start) / 1000) | number_format(0) }} Kb</td>
             </tr>
             <tr>
-                <th>Memory (peak)</th>
+                <th style="width: 20%">Memory (peak)</th>
                 <td>{{ (template.memory_peak / 1000) | number_format(0) }} Kb</td>
             </tr>
             <tr>
-                <th>Duration</th>
+                <th style="width: 20%">Duration</th>
                 <td>{{ template.duration | number_format(2) }} ms</td>
+            </tr>
+            <tr>
+                <th style="width: 20%">Total duration percentage</th>
+
+                {% set percentage  = (template.duration/collector.totalDuration * 100) | number_format(1) %}
+                {% set color       = 'white' %}
+                {% set description = '' %}
+
+                {% if percentage >= 20 %}
+                    {% set color       = 'red' %}
+                    {% set description = ' (>= 20%)' %}
+                {% elseif percentage >= 10 %}
+                    {% set color       = 'yellow' %}
+                    {% set description = ' (10 <= %s <= 20)' | format(percentage) %}
+                {% endif %}
+
+                <td style="background-color: {{ color }}">{{ percentage }}%{{ description }}</td>
             </tr>
         </table>
 
         <table>
             <caption>Parameters</caption>
             <tr>
-                <th>#</th>
-                <th>Name</th>
+                <th style="width: 5%">#</th>
+                <th style="width: 15%">Name</th>
                 <th>Value</th>
             </tr>
             {% for name, parameter in template.parameters %}
                 <tr>
-                    <th>{{ loop.index }}</th>
-                    <td>{{ name }}</td>
+                    <th style="width: 5%">{{ loop.index }}</th>
+                    <td style="width: 15%">{{ name }}</td>
                     <td>{{ parameter }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">No parameter</td>
                 </tr>
             {% endfor %}
         </table>

@@ -33,23 +33,38 @@ class TemplatingDataCollector extends DataCollector
      */
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
-        $this->data = array();
+        $this->data = array(
+            'templates'      => array(),
+            'total_duration' => 0,
+        );
 
         foreach ($this->traces as $trace) {
-            $this->data[] = array_merge($trace, array(
+            $this->data['templates'][] = array_merge($trace, array(
                 'parameters' => array_map(array($this, 'varToString'), $trace['parameters']),
             ));
+
+            $this->data['total_duration'] += $trace['duration'];
         }
     }
 
     /**
-     * Gets the data
+     * Gets the templates
      *
      * @return array
      */
-    public function getData()
+    public function getTemplates()
     {
-        return $this->data;
+        return $this->data['templates'];
+    }
+
+    /**
+     * Gets the total duration
+     *
+     * @return integer
+     */
+    public function getTotalDuration()
+    {
+        return $this->data['total_duration'];
     }
 
     /**
