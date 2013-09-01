@@ -20,6 +20,7 @@ This version of the bundle requires Symfony 2.1+.
 
 * [Installation](#installation)
 * [Profiler](#profiler)
+* [Contribution](#contribution)
 
 <a name="installation"></a>
 
@@ -85,3 +86,16 @@ useful for the front office development.
 
 If you configured the [framework bundle](http://symfony.com/doc/current/reference/configuration/framework.html#ide)
 (or `xdebug.file_link_format`), you can edit templates just by clicking on name.
+
+<a name="contribution"></a>
+
+## Contribution
+
+Any question or feedback? Open an issue and I will try to reply quickly.
+
+A feature is missing here? Feel free to create a pull request to solve it!
+
+I hope this has been useful and has helped you. If so, share it and recommend
+it! :)
+
+[@mremitsme](https://twitter.com/mremitsme)
