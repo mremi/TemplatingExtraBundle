@@ -12,6 +12,10 @@ page rendering. This only includes templates which are rendered by `render` and
 `renderResponse` through the templating service (for instance, `include` and
 `embed` Twig tags are not tracked).
 
+## License
+
+This bundle is available under the [MIT license](Resources/meta/LICENSE).
+
 ## Prerequisites
 
 This version of the bundle requires Symfony 2.1+.
