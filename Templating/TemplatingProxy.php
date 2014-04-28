@@ -14,11 +14,11 @@ namespace Mremi\TemplatingExtraBundle\Templating;
 use Mremi\TemplatingExtraBundle\DataCollector\TemplatingDataCollector;
 
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator;
-use Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser;
+use Symfony\Component\Config\FileLocatorInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Stopwatch\Stopwatch;
 use Symfony\Component\Stopwatch\StopwatchEvent;
+use Symfony\Component\Templating\TemplateNameParserInterface;
 use Symfony\Component\Templating\TemplateReferenceInterface;
 
 /**
@@ -34,12 +34,12 @@ class TemplatingProxy implements EngineInterface
     private $templating;
 
     /**
-     * @var TemplateNameParser
+     * @var TemplateNameParserInterface
      */
     private $templateNameParser;
 
     /**
-     * @var TemplateLocator
+     * @var FileLocatorInterface
      */
     private $templateLocator;
 
@@ -61,13 +61,13 @@ class TemplatingProxy implements EngineInterface
     /**
      * Constructor
      *
-     * @param EngineInterface         $templating         A templating instance
-     * @param TemplateNameParser      $templateNameParser A template name parser instance
-     * @param TemplateLocator         $templateLocator    A template locator instance
-     * @param Stopwatch               $stopWatch          A Stopwatch instance
-     * @param TemplatingDataCollector $dataCollector      A templating data collector instance
+     * @param EngineInterface             $templating         A templating instance
+     * @param TemplateNameParserInterface $templateNameParser A template name parser instance
+     * @param FileLocatorInterface        $templateLocator    A template locator instance
+     * @param Stopwatch                   $stopWatch          A Stopwatch instance
+     * @param TemplatingDataCollector     $dataCollector      A templating data collector instance
      */
-    public function __construct(EngineInterface $templating, TemplateNameParser $templateNameParser, TemplateLocator $templateLocator, Stopwatch $stopWatch, TemplatingDataCollector $dataCollector)
+    public function __construct(EngineInterface $templating, TemplateNameParserInterface $templateNameParser, FileLocatorInterface $templateLocator, Stopwatch $stopWatch, TemplatingDataCollector $dataCollector)
     {
         $this->templating         = $templating;
         $this->templateNameParser = $templateNameParser;
@@ -128,7 +128,7 @@ class TemplatingProxy implements EngineInterface
      *
      * @return StopwatchEvent
      */
-    private function startProfiling($name, array $parameters)
+    protected function startProfiling($name, array $parameters)
     {
         $templateReference = $name instanceof TemplateReferenceInterface ? $name : $this->templateNameParser->parse($name);
 
@@ -150,7 +150,7 @@ class TemplatingProxy implements EngineInterface
      *
      * @param StopwatchEvent $event A stopwatchEvent instance
      */
-    private function stopProfiling(StopwatchEvent $event)
+    protected function stopProfiling(StopwatchEvent $event)
     {
         $event->stop();
 
