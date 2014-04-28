@@ -6,6 +6,8 @@ MremiTemplatingExtraBundle
 [![Build Status](https://api.travis-ci.org/mremi/TemplatingExtraBundle.png?branch=master)](https://travis-ci.org/mremi/TemplatingExtraBundle)
 [![Total Downloads](https://poser.pugx.org/mremi/templating-extra-bundle/downloads.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
 [![Latest Stable Version](https://poser.pugx.org/mremi/templating-extra-bundle/v/stable.png)](https://packagist.org/packages/mremi/templating-extra-bundle)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mremi/TemplatingExtraBundle/badges/quality-score.png?s=2aa12928b5c08db31bd00032cd4f4e336f7f3950)](https://scrutinizer-ci.com/g/mremi/TemplatingExtraBundle/)
+[![Code Coverage](https://scrutinizer-ci.com/g/mremi/TemplatingExtraBundle/badges/coverage.png?s=d26b08bad01be61e7c6660953d9eb296cf8309a7)](https://scrutinizer-ci.com/g/mremi/TemplatingExtraBundle/)
 
 This bundle profiles all the rendered templates (Twig or PHP) during a Symfony2
 page rendering. This only includes templates which are rendered by `render` and
