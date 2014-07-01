@@ -297,6 +297,12 @@ class TemplatingProxyTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        unset($this->templating, $this->templateNameParser, $this->templateLocator, $this->stopwatch, $this->dataCollector, $this->proxy, $this->event);
+        $this->templating         = null;
+        $this->templateNameParser = null;
+        $this->templateLocator    = null;
+        $this->stopwatch          = null;
+        $this->dataCollector      = null;
+        $this->proxy              = null;
+        $this->event              = null;
     }
 }

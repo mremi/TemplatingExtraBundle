@@ -139,6 +139,6 @@ class TemplatingDataCollectorTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        unset($this->collector);
+        $this->collector = null;
     }
 }
