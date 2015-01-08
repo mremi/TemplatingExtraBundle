@@ -15,6 +15,7 @@ use Mremi\TemplatingExtraBundle\DataCollector\TemplatingDataCollector;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Kernel;
 
 /**
  * Tests TemplatingDataCollector class
@@ -70,7 +71,14 @@ class TemplatingDataCollectorTest extends \PHPUnit_Framework_TestCase
         $property = new \ReflectionProperty($this->collector, 'data');
         $property->setAccessible(true);
 
-        $this->assertNull($property->getValue($this->collector));
+        if (version_compare(Kernel::VERSION, '2.6', '<')) {
+            $this->assertNull($property->getValue($this->collector));
+        } else {
+            $data = $property->getValue($this->collector);
+
+            $this->assertTrue(is_array($data));
+            $this->assertCount(0, $data);
+        }
 
         $this->collector->collect($request, $response, $exception);
 
